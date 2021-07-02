@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CountryReports } from 'src/countryReports';
 import { ApiServicesService } from '../api-services.service'
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-covid19',
@@ -14,6 +15,7 @@ export class Covid19Component implements OnInit {
   ELEMENT_DATA! : CountryReports[];
   displayedColumns: string[] = ['country', 'cases', 'todayCases', 'deaths', 'todayDeaths', 'recovered', 'active', 'critical', 'casesPerOneMillion', 'deathsPerOneMillion', 'tests', 'testsPerOneMillion' ];
   dataSource = new MatTableDataSource<CountryReports>(this.ELEMENT_DATA);
+  fileName='Covid19_Country_Reports.xlsx';
 
 
    //Pagination
@@ -36,6 +38,19 @@ export class Covid19Component implements OnInit {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
+  }
+
+  exportexcel(): void{
+    /* table id is passed over here */
+    let element = document.getElementById('excel-table');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    /* save to file */
+    XLSX.writeFile(wb, this.fileName);
   }
 
 }
