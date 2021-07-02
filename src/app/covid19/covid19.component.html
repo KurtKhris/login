@@ -1,8 +1,9 @@
 
-<div>
+<div class="download">
     <a style="cursor: pointer; " (click)="exportexcel()">
-        <mat-icon> cloud_download</mat-icon>
+        <mat-icon > cloud_download</mat-icon>
     </a>
+    
   </div>
   <mat-form-field>
     <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Filter">

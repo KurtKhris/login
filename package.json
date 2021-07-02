@@ -22,6 +22,8 @@
     "@angular/platform-browser-dynamic": "^11.2.14",
     "@angular/router": "^11.2.14",
     "file-saver": "^2.0.5",
+    "jspdf-autotable": "^3.5.15",
+    "pdfmake": "^0.1.71",
     "rxjs": "^6.5.5",
     "tslib": "^2.0.0",
     "xlsx": "^0.17.0",

@@ -6,6 +6,7 @@ import { CountryReports } from 'src/countryReports';
 import { ApiServicesService } from '../api-services.service'
 import * as XLSX from 'xlsx';
 
+
 @Component({
   selector: 'app-covid19',
   templateUrl: './covid19.component.html',
@@ -16,6 +17,7 @@ export class Covid19Component implements OnInit {
   displayedColumns: string[] = ['country', 'cases', 'todayCases', 'deaths', 'todayDeaths', 'recovered', 'active', 'critical', 'casesPerOneMillion', 'deathsPerOneMillion', 'tests', 'testsPerOneMillion' ];
   dataSource = new MatTableDataSource<CountryReports>(this.ELEMENT_DATA);
   fileName='Covid19_Country_Reports.xlsx';
+  pdffileName='Covid19_Country_Reports.pdf';
 
 
    //Pagination
@@ -52,5 +54,6 @@ export class Covid19Component implements OnInit {
     /* save to file */
     XLSX.writeFile(wb, this.fileName);
   }
+
 
 }
